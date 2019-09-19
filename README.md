@@ -12,7 +12,7 @@ An unofficial API for Nairaland.
 * [Contributing](#contributing)
 
 # API Usage
-### API Base URL: `http://pynairaland.herokuapp.com`
+### API Base URL: `http://pynairaland.herokuapp.com` (Inactive for now)
 
 ## Endpoints Summary
 * GET: [`/home`](#api-home)
@@ -29,7 +29,7 @@ An unofficial API for Nairaland.
 * GET: [`/users/<user>/posts`](#api-user-posts) {page=Int}
 * GET: [`/users/<user>/topics`](#api-user-topics) {page=Int}
 
-######AUTHENTICATED ROUTES
+###### AUTHENTICATED ROUTES
 * GET: [`/user/followed_boards`](#api-user-followed-boards) {page=Int}
 * GET: [`/user/followed_topics`]('#api-user-followed-topics) {page=Int}
 * GET: [`/user/likes_and_shares`](#api-user-like-share) {page=Int}
