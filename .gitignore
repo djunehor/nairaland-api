@@ -1,5 +1,6 @@
 __pycache__/
 .env
+chromedriver.exe
 .idea/
 *.py___jb_tmp___
 pynairaland/

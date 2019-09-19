@@ -255,7 +255,11 @@ Output (excerpt):
 * Cache data with memcached
 
 # Installation
-You will need [Python 3](https://www.python.org/download/). [pip](http://pip.readthedocs.org/en/latest/installing.html) is recommended for installing dependencies. It is recommended that you run in a virtual environment.
+You will need [Python 3](https://www.python.org/download/). [pip](http://pip.readthedocs.org/en/latest/installing.html) is recommended for installing dependencies. It is recommended that you run in a virtual environment. You can create a virtual environment by running `py -m venv [folder-name]`
+- Clone the repo `https://github.com/makinde2013/nairaland-api`
+- Install requirements `pip install -r requirements.txt`
+- Download chrome driver for your OS [here](https://chromedriver.chromium.org/) and place in the project directory i.e same place server.py is
+- Start the server `py server.py` or `python server.py`
 
 To run the API locally:
 ```bash

@@ -1,11 +1,11 @@
 from flask import Flask, jsonify, request
 from flask.ext.cache import Cache
 from flask import Response
-from pynairaland.nairaland import Nairaland
-from pynairaland.nairaland import User
+from nairaland import Nairaland
+from nairaland import User
 import logging
 from logging import StreamHandler
-from pynairaland.nairaland.browser import Browser
+from nairaland.browser import Browser
 import os
 from dotenv import load_dotenv
 
@@ -39,8 +39,8 @@ def index_route():
         'base_url': 'https://pynairaland.herokuapp.com',
         'project': {
             'name': 'Nairaland API',
-            'url': 'https://github.com/makinde2013/quora-api',
-            'documentation': 'https://djunehor.com/nairaland-api/',
+            'url': 'https://github.com/makinde2013/nairaland-api',
+            'documentation': 'https://github.com/makinde2013/nairaland-api/blob/master/README.md',
             'issues': 'https://github.com/makinde2013/nairaland-api/issues'
         },
         'endpoints': {
