@@ -30,6 +30,7 @@ load_dotenv('.env')
 heroku = False
 if os.environ.get('Heroku') == 'True':
     from selenium import webdriver
+    from webdriver_manager.chrome import ChromeDriverManager
     heroku = True
     GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
     CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
@@ -93,7 +94,7 @@ def index_route():
 def home_route():
     global heroku, chrome_options, CHROMEDRIVER_PATH
     if heroku:
-        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        browser = webdriver.Chrome(ChromeDriverManager().install())
     else:
         browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
