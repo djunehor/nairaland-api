@@ -27,6 +27,18 @@ app.logger.addHandler(file_handler)
 
 # looad env
 load_dotenv('.env')
+heroku = False
+if os.environ.get('Heroku') == 'True':
+    from selenium import webdriver
+    heroku = True
+    GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
+    CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.binary_location = GOOGLE_CHROME_PATH
 
 ####################################################################
 # Routes
@@ -76,9 +88,13 @@ def index_route():
 @cache.cached(timeout=300)
 @app.route('/home', methods=['GET'])
 def home_route():
-    browser = Browser(os.getenv('LINUX'))
+    global chrome_options, CHROMEDRIVER_PATH
+    if heroku:
+        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    else:
+        browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
-    response =  jsonify(nairaland.front_page_topics())
+    response = jsonify(nairaland.front_page_topics())
     browser.driver.quit()
     return response
 
@@ -97,7 +113,11 @@ def categories():
     else:
         depth = 0
 
-    browser = Browser(os.getenv('LINUX'))
+    global chrome_options, CHROMEDRIVER_PATH
+    if heroku:
+        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    else:
+        browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
 
     response = jsonify(nairaland.categories(depth))
@@ -119,13 +139,15 @@ def topics_trending():
     else:
         page = 0
 
-    browser = Browser(os.getenv('LINUX'))
+    global chrome_options, CHROMEDRIVER_PATH
+    if heroku:
+        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    else:
+        browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
     response = jsonify(nairaland.trending_topics(page))
     browser.driver.quit()
     return response
-
-
 
 ####################################################################
 # New Topics
@@ -141,7 +163,11 @@ def topics_new():
     else:
         page = 0
 
-    browser = Browser(os.getenv('LINUX'))
+    global chrome_options, CHROMEDRIVER_PATH
+    if heroku:
+        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    else:
+        browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
     response = jsonify(nairaland.new_topics(page))
     browser.driver.quit()
@@ -161,12 +187,15 @@ def posts_new():
     else:
         page = 0
 
-    browser = Browser(os.getenv('LINUX'))
+    global chrome_options, CHROMEDRIVER_PATH
+    if heroku:
+        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    else:
+        browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
     response = jsonify(nairaland.recent_posts(page))
     browser.driver.quit()
     return response
-
 
 
 ####################################################################
@@ -175,7 +204,11 @@ def posts_new():
 @cache.cached(timeout=300)
 @app.route('/users/<user>', methods=['GET'])
 def user_profile(user):
-    browser = Browser(os.getenv('LINUX'))
+    global chrome_options, CHROMEDRIVER_PATH
+    if heroku:
+        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    else:
+        browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
     response =  jsonify(nairaland.user(user))
     browser.driver.quit()
@@ -196,7 +229,11 @@ def user_posts(user):
     else:
         page = 0
 
-    browser = Browser(os.getenv('LINUX'))
+    global chrome_options, CHROMEDRIVER_PATH
+    if heroku:
+        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    else:
+        browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
     response = jsonify(nairaland.user_posts(user, page))
     browser.driver.quit()
@@ -217,7 +254,11 @@ def user_topics(user):
     else:
         page = 0
 
-    browser = Browser(os.getenv('LINUX'))
+    global chrome_options, CHROMEDRIVER_PATH
+    if heroku:
+        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    else:
+        browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
     response = jsonify(nairaland.user_topics(user, page))
     browser.driver.quit()
@@ -238,7 +279,11 @@ def category_topics(category):
     else:
         page = 0
 
-    browser = Browser(os.getenv('LINUX'))
+    global chrome_options, CHROMEDRIVER_PATH
+    if heroku:
+        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    else:
+        browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
     response = jsonify(nairaland.category_topics(category, page))
     browser.driver.quit()
@@ -259,7 +304,11 @@ def topic_posts(topic):
     else:
         page = 0
 
-    browser = Browser(os.getenv('LINUX'))
+    global chrome_options, CHROMEDRIVER_PATH
+    if heroku:
+        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    else:
+        browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
 
     response = jsonify(nairaland.topic_posts(topic, page))
@@ -283,7 +332,11 @@ def search():
     else:
         page = 0
 
-    browser = Browser(os.getenv('LINUX'))
+    global chrome_options, CHROMEDRIVER_PATH
+    if heroku:
+        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    else:
+        browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
 
     board = request.form.get('board') if request.form.get('board') else 0
@@ -300,11 +353,15 @@ def search():
 @app.route('/user/followed_topics', methods=['GET'])
 def user_followed_topics():
     # load browser for current request
-    browser = Browser(os.getenv('LINUX'))
+    global chrome_options, CHROMEDRIVER_PATH
+    if heroku:
+        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    else:
+        browser = Browser(os.environ.get('LINUX'))
     user = User(browser)
 
     # login first
-    if not browser.login(username=os.getenv('NL_USERNAME'), user_pass=os.getenv('NL_PASSWORD')):
+    if not browser.login(username=os.environ.get('NL_USERNAME'), user_pass=os.environ.get('NL_PASSWORD')):
         browser.driver.quit()
         return jsonify({'error': 'Login failed'})
 
@@ -327,11 +384,15 @@ def user_followed_topics():
 @app.route('/user/followed_boards', methods=['GET'])
 def user_followed_boards():
     # load browser for current request
-    browser = Browser(os.getenv('LINUX'))
+    global chrome_options, CHROMEDRIVER_PATH
+    if heroku:
+        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    else:
+        browser = Browser(os.environ.get('LINUX'))
     user = User(browser)
 
     # login first
-    if not browser.login(username=os.getenv('NL_USERNAME'), user_pass=os.getenv('NL_PASSWORD')):
+    if not browser.login(username=os.environ.get('NL_USERNAME'), user_pass=os.environ.get('NL_PASSWORD')):
         browser.driver.quit()
         return jsonify({'error': 'Login failed'})
 
@@ -354,11 +415,15 @@ def user_followed_boards():
 @app.route('/user/mentions', methods=['GET'])
 def user_mentions():
     # load browser for current request
-    browser = Browser(os.getenv('LINUX'))
+    global chrome_options, CHROMEDRIVER_PATH
+    if heroku:
+        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    else:
+        browser = Browser(os.environ.get('LINUX'))
     user = User(browser)
 
     # login first
-    if not browser.login(username=os.getenv('NL_USERNAME'), user_pass=os.getenv('NL_PASSWORD')):
+    if not browser.login(username=os.environ.get('NL_USERNAME'), user_pass=os.environ.get('NL_PASSWORD')):
         browser.driver.quit()
         return jsonify({'error': 'Login failed'})
 
@@ -381,11 +446,15 @@ def user_mentions():
 @app.route('/user/following_posts', methods=['GET'])
 def user_following_posts():
     # load browser for current request
-    browser = Browser(os.getenv('LINUX'))
+    global chrome_options, CHROMEDRIVER_PATH
+    if heroku:
+        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    else:
+        browser = Browser(os.environ.get('LINUX'))
     user = User(browser)
 
     # login first
-    if not browser.login(username=os.getenv('NL_USERNAME'), user_pass=os.getenv('NL_PASSWORD')):
+    if not browser.login(username=os.environ.get('NL_USERNAME'), user_pass=os.environ.get('NL_PASSWORD')):
         browser.driver.quit()
         return jsonify({'error': 'Login failed'})
 
@@ -408,11 +477,15 @@ def user_following_posts():
 @app.route('/user/shared_with', methods=['GET'])
 def user_shared_with():
     # load browser for current request
-    browser = Browser(os.getenv('LINUX'))
+    global chrome_options, CHROMEDRIVER_PATH
+    if heroku:
+        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    else:
+        browser = Browser(os.environ.get('LINUX'))
     user = User(browser)
 
     # login first
-    if not browser.login(username=os.getenv('NL_USERNAME'), user_pass=os.getenv('NL_PASSWORD')):
+    if not browser.login(username=os.environ.get('NL_USERNAME'), user_pass=os.environ.get('NL_PASSWORD')):
         browser.driver.quit()
         return jsonify({'error': 'Login failed'})
 
@@ -437,11 +510,15 @@ def user_topic_new(board):
     if not request.form.get('title') or not request.form.get('content'):
         return jsonify({'error': 'Title and Content are required!'}), 422
     # load browser for current request
-    browser = Browser(os.getenv('LINUX'))
+    global chrome_options, CHROMEDRIVER_PATH
+    if heroku:
+        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    else:
+        browser = Browser(os.environ.get('LINUX'))
     user = User(browser)
 
     # login first
-    if not browser.login(username=os.getenv('NL_USERNAME'), user_pass=os.getenv('NL_PASSWORD')):
+    if not browser.login(username=os.environ.get('NL_USERNAME'), user_pass=os.environ.get('NL_PASSWORD')):
         browser.driver.quit()
         return jsonify({'error': 'Login failed'})
 
@@ -459,11 +536,15 @@ def user_post_new(topic):
     if not request.form.get('content'):
         return jsonify({'error': 'Content is required!'}), 422
     # load browser for current request
-    browser = Browser(os.getenv('LINUX'))
+    global chrome_options, CHROMEDRIVER_PATH
+    if heroku:
+        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    else:
+        browser = Browser(os.environ.get('LINUX'))
     user = User(browser)
 
     # login first
-    if not browser.login(username=os.getenv('NL_USERNAME'), user_pass=os.getenv('NL_PASSWORD')):
+    if not browser.login(username=os.environ.get('NL_USERNAME'), user_pass=os.environ.get('NL_PASSWORD')):
         browser.driver.quit()
         return jsonify({'error': 'Login failed'})
 
@@ -481,11 +562,15 @@ def user_post_like():
     if not request.form.get('post_slug'):
         return jsonify({'error': 'Post Slug is required!'}), 422
     # load browser for current request
-    browser = Browser(os.getenv('LINUX'))
+    global chrome_options, CHROMEDRIVER_PATH
+    if heroku:
+        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    else:
+        browser = Browser(os.environ.get('LINUX'))
     user = User(browser)
 
     # login first
-    if not browser.login(username=os.getenv('NL_USERNAME'), user_pass=os.getenv('NL_PASSWORD')):
+    if not browser.login(username=os.environ.get('NL_USERNAME'), user_pass=os.environ.get('NL_PASSWORD')):
         browser.driver.quit()
         return jsonify({'error': 'Login failed'})
 
@@ -503,11 +588,15 @@ def user_post_share():
     if not request.form.get('post_slug'):
         return jsonify({'error': 'Post Slug is required!'}), 422
     # load browser for current request
-    browser = Browser(os.getenv('LINUX'))
+    global chrome_options, CHROMEDRIVER_PATH
+    if heroku:
+        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    else:
+        browser = Browser(os.environ.get('LINUX'))
     user = User(browser)
 
     # login first
-    if not browser.login(username=os.getenv('NL_USERNAME'), user_pass=os.getenv('NL_PASSWORD')):
+    if not browser.login(username=os.environ.get('NL_USERNAME'), user_pass=os.environ.get('NL_PASSWORD')):
         browser.driver.quit()
         return jsonify({'error': 'Login failed'})
 
