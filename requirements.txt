@@ -12,4 +12,4 @@ nairaland==0.1.1
 requests==2.9.1
 Werkzeug==0.11.3
 wheel==0.29.0
-dotenv
+python-dotenv
