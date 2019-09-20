@@ -90,7 +90,7 @@ def index_route():
 def home_route():
     global chrome_options, CHROMEDRIVER_PATH
     if heroku:
-        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
         browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
@@ -115,7 +115,7 @@ def categories():
 
     global chrome_options, CHROMEDRIVER_PATH
     if heroku:
-        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
         browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
@@ -141,7 +141,7 @@ def topics_trending():
 
     global chrome_options, CHROMEDRIVER_PATH
     if heroku:
-        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
         browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
@@ -165,7 +165,7 @@ def topics_new():
 
     global chrome_options, CHROMEDRIVER_PATH
     if heroku:
-        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
         browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
@@ -189,7 +189,7 @@ def posts_new():
 
     global chrome_options, CHROMEDRIVER_PATH
     if heroku:
-        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
         browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
@@ -206,7 +206,7 @@ def posts_new():
 def user_profile(user):
     global chrome_options, CHROMEDRIVER_PATH
     if heroku:
-        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
         browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
@@ -231,7 +231,7 @@ def user_posts(user):
 
     global chrome_options, CHROMEDRIVER_PATH
     if heroku:
-        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
         browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
@@ -256,7 +256,7 @@ def user_topics(user):
 
     global chrome_options, CHROMEDRIVER_PATH
     if heroku:
-        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
         browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
@@ -281,7 +281,7 @@ def category_topics(category):
 
     global chrome_options, CHROMEDRIVER_PATH
     if heroku:
-        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
         browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
@@ -306,7 +306,7 @@ def topic_posts(topic):
 
     global chrome_options, CHROMEDRIVER_PATH
     if heroku:
-        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
         browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
@@ -334,7 +334,7 @@ def search():
 
     global chrome_options, CHROMEDRIVER_PATH
     if heroku:
-        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
         browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
@@ -355,7 +355,7 @@ def user_followed_topics():
     # load browser for current request
     global chrome_options, CHROMEDRIVER_PATH
     if heroku:
-        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
         browser = Browser(os.environ.get('LINUX'))
     user = User(browser)
@@ -386,7 +386,7 @@ def user_followed_boards():
     # load browser for current request
     global chrome_options, CHROMEDRIVER_PATH
     if heroku:
-        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
         browser = Browser(os.environ.get('LINUX'))
     user = User(browser)
@@ -417,7 +417,7 @@ def user_mentions():
     # load browser for current request
     global chrome_options, CHROMEDRIVER_PATH
     if heroku:
-        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
         browser = Browser(os.environ.get('LINUX'))
     user = User(browser)
@@ -448,7 +448,7 @@ def user_following_posts():
     # load browser for current request
     global chrome_options, CHROMEDRIVER_PATH
     if heroku:
-        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
         browser = Browser(os.environ.get('LINUX'))
     user = User(browser)
@@ -479,7 +479,7 @@ def user_shared_with():
     # load browser for current request
     global chrome_options, CHROMEDRIVER_PATH
     if heroku:
-        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
         browser = Browser(os.environ.get('LINUX'))
     user = User(browser)
@@ -512,7 +512,7 @@ def user_topic_new(board):
     # load browser for current request
     global chrome_options, CHROMEDRIVER_PATH
     if heroku:
-        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
         browser = Browser(os.environ.get('LINUX'))
     user = User(browser)
@@ -538,7 +538,7 @@ def user_post_new(topic):
     # load browser for current request
     global chrome_options, CHROMEDRIVER_PATH
     if heroku:
-        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
         browser = Browser(os.environ.get('LINUX'))
     user = User(browser)
@@ -564,7 +564,7 @@ def user_post_like():
     # load browser for current request
     global chrome_options, CHROMEDRIVER_PATH
     if heroku:
-        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
         browser = Browser(os.environ.get('LINUX'))
     user = User(browser)
@@ -590,7 +590,7 @@ def user_post_share():
     # load browser for current request
     global chrome_options, CHROMEDRIVER_PATH
     if heroku:
-        browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
         browser = Browser(os.environ.get('LINUX'))
     user = User(browser)
