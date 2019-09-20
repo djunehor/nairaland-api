@@ -5,6 +5,8 @@ Nairaland API
 
 An unofficial API for Nairaland.
 
+PS: Please use responsibly and ensure you're not violating any nairaland rule.
+
 ### Table of Contents
 * [API Usage](#api-usage)
 * [Features](#features)
