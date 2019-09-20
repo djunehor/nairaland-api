@@ -30,6 +30,7 @@ load_dotenv('.env')
 heroku = False
 if os.environ.get('Heroku') == 'True':
     from selenium import webdriver
+    CHROMEDRIVER_PATH = "/app/.chromedriver/bin/chromedriver"'
     heroku = True
 
     chrome_options = webdriver.ChromeOptions()
@@ -41,7 +42,7 @@ if os.environ.get('Heroku') == 'True':
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument('--ignore-certificate-errors')
-    chrome_options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
+    chrome_options.binary_location = '.apt/usr/bin/google-chrome-stable'
 
 
 ####################################################################
@@ -94,9 +95,9 @@ def index_route():
 @cache.cached(timeout=300)
 @app.route('/home', methods=['GET'])
 def home_route():
-    global heroku, chrome_options
+    global heroku, chrome_options, CHROMEDRIVER_PATH
     if heroku:
-        browser = webdriver.Chrome(executable_path=os.environ.get('CHROMEDRIVER_PATH'), chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
         browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
