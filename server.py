@@ -40,15 +40,18 @@ if os.environ.get('Heroku') == 'True':
     chrome_options.add_argument('--no-sandbox')
     chrome_options.binary_location = GOOGLE_CHROME_PATH
 
+
 ####################################################################
 # Routes
 ####################################################################
 @app.route('/', methods=['GET'])
 def index_route():
+    global heroku
     return jsonify({
         'author': 'Zacchaeus Bolaji',
         'author_url': 'https://djunehor.com',
         'base_url': 'https://pynairaland.herokuapp.com',
+        'heroku' : heroku,
         'project': {
             'name': 'Nairaland API',
             'url': 'https://github.com/makinde2013/nairaland-api',
