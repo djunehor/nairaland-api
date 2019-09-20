@@ -28,26 +28,6 @@ app.logger.addHandler(file_handler)
 
 # looad env
 load_dotenv('.env')
-heroku = False
-if os.environ.get('Heroku') == 'True':
-    from selenium import webdriver
-    from selenium.webdriver.chrome.options import Options
-
-    CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH', '/usr/local/bin/chromedriver')
-    GOOGLE_CHROME_BIN = os.environ.get('GOOGLE_CHROME_BIN', '/usr/bin/google-chrome')
-    heroku = True
-
-    chrome_options = Options()
-    chrome_options.headless = True
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument("--start-maximized")
-    chrome_options.add_argument("--disable-infobars")
-    chrome_options.add_argument("--disable-extensions")
-    chrome_options.add_argument('--disable-gpu')
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument('--ignore-certificate-errors')
-    chrome_options.binary_location = GOOGLE_CHROME_BIN
-
 
 ####################################################################
 # Routes
@@ -99,11 +79,7 @@ def index_route():
 @cache.cached(timeout=300)
 @app.route('/home', methods=['GET'])
 def home_route():
-    global heroku, chrome_options, CHROMEDRIVER_PATH
-    if heroku:
-        browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
-    else:
-        browser = Browser(os.environ.get('LINUX'))
+    browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
     response = jsonify(nairaland.front_page_topics())
     browser.driver.quit()
