@@ -88,7 +88,7 @@ def index_route():
 @cache.cached(timeout=300)
 @app.route('/home', methods=['GET'])
 def home_route():
-    global chrome_options, CHROMEDRIVER_PATH
+    global heroku, chrome_options, CHROMEDRIVER_PATH
     if heroku:
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
@@ -113,7 +113,7 @@ def categories():
     else:
         depth = 0
 
-    global chrome_options, CHROMEDRIVER_PATH
+    global heroku, chrome_options, CHROMEDRIVER_PATH
     if heroku:
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
@@ -139,7 +139,7 @@ def topics_trending():
     else:
         page = 0
 
-    global chrome_options, CHROMEDRIVER_PATH
+    global heroku, chrome_options, CHROMEDRIVER_PATH
     if heroku:
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
@@ -163,7 +163,7 @@ def topics_new():
     else:
         page = 0
 
-    global chrome_options, CHROMEDRIVER_PATH
+    global heroku, chrome_options, CHROMEDRIVER_PATH
     if heroku:
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
@@ -187,7 +187,7 @@ def posts_new():
     else:
         page = 0
 
-    global chrome_options, CHROMEDRIVER_PATH
+    global heroku, chrome_options, CHROMEDRIVER_PATH
     if heroku:
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
@@ -204,7 +204,7 @@ def posts_new():
 @cache.cached(timeout=300)
 @app.route('/users/<user>', methods=['GET'])
 def user_profile(user):
-    global chrome_options, CHROMEDRIVER_PATH
+    global heroku, chrome_options, CHROMEDRIVER_PATH
     if heroku:
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
@@ -229,7 +229,7 @@ def user_posts(user):
     else:
         page = 0
 
-    global chrome_options, CHROMEDRIVER_PATH
+    global heroku, chrome_options, CHROMEDRIVER_PATH
     if heroku:
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
@@ -254,7 +254,7 @@ def user_topics(user):
     else:
         page = 0
 
-    global chrome_options, CHROMEDRIVER_PATH
+    global heroku, chrome_options, CHROMEDRIVER_PATH
     if heroku:
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
@@ -279,7 +279,7 @@ def category_topics(category):
     else:
         page = 0
 
-    global chrome_options, CHROMEDRIVER_PATH
+    global heroku, chrome_options, CHROMEDRIVER_PATH
     if heroku:
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
@@ -304,7 +304,7 @@ def topic_posts(topic):
     else:
         page = 0
 
-    global chrome_options, CHROMEDRIVER_PATH
+    global heroku, chrome_options, CHROMEDRIVER_PATH
     if heroku:
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
@@ -332,7 +332,7 @@ def search():
     else:
         page = 0
 
-    global chrome_options, CHROMEDRIVER_PATH
+    global heroku, chrome_options, CHROMEDRIVER_PATH
     if heroku:
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
@@ -353,7 +353,7 @@ def search():
 @app.route('/user/followed_topics', methods=['GET'])
 def user_followed_topics():
     # load browser for current request
-    global chrome_options, CHROMEDRIVER_PATH
+    global heroku, chrome_options, CHROMEDRIVER_PATH
     if heroku:
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
@@ -384,7 +384,7 @@ def user_followed_topics():
 @app.route('/user/followed_boards', methods=['GET'])
 def user_followed_boards():
     # load browser for current request
-    global chrome_options, CHROMEDRIVER_PATH
+    global heroku, chrome_options, CHROMEDRIVER_PATH
     if heroku:
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
@@ -415,7 +415,7 @@ def user_followed_boards():
 @app.route('/user/mentions', methods=['GET'])
 def user_mentions():
     # load browser for current request
-    global chrome_options, CHROMEDRIVER_PATH
+    global heroku, chrome_options, CHROMEDRIVER_PATH
     if heroku:
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
@@ -446,7 +446,7 @@ def user_mentions():
 @app.route('/user/following_posts', methods=['GET'])
 def user_following_posts():
     # load browser for current request
-    global chrome_options, CHROMEDRIVER_PATH
+    global heroku, chrome_options, CHROMEDRIVER_PATH
     if heroku:
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
@@ -477,7 +477,7 @@ def user_following_posts():
 @app.route('/user/shared_with', methods=['GET'])
 def user_shared_with():
     # load browser for current request
-    global chrome_options, CHROMEDRIVER_PATH
+    global heroku, chrome_options, CHROMEDRIVER_PATH
     if heroku:
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
@@ -510,7 +510,7 @@ def user_topic_new(board):
     if not request.form.get('title') or not request.form.get('content'):
         return jsonify({'error': 'Title and Content are required!'}), 422
     # load browser for current request
-    global chrome_options, CHROMEDRIVER_PATH
+    global heroku, chrome_options, CHROMEDRIVER_PATH
     if heroku:
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
@@ -536,7 +536,7 @@ def user_post_new(topic):
     if not request.form.get('content'):
         return jsonify({'error': 'Content is required!'}), 422
     # load browser for current request
-    global chrome_options, CHROMEDRIVER_PATH
+    global heroku, chrome_options, CHROMEDRIVER_PATH
     if heroku:
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
@@ -562,7 +562,7 @@ def user_post_like():
     if not request.form.get('post_slug'):
         return jsonify({'error': 'Post Slug is required!'}), 422
     # load browser for current request
-    global chrome_options, CHROMEDRIVER_PATH
+    global heroku, chrome_options, CHROMEDRIVER_PATH
     if heroku:
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
@@ -588,7 +588,7 @@ def user_post_share():
     if not request.form.get('post_slug'):
         return jsonify({'error': 'Post Slug is required!'}), 422
     # load browser for current request
-    global chrome_options, CHROMEDRIVER_PATH
+    global heroku, chrome_options, CHROMEDRIVER_PATH
     if heroku:
         browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     else:
