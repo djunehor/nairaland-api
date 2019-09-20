@@ -31,14 +31,17 @@ heroku = False
 if os.environ.get('Heroku') == 'True':
     from selenium import webdriver
     heroku = True
-    GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
-    CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
 
     chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument('--disable-gpu')
-    chrome_options.add_argument('--headless')
+    chrome_options.add_argument("--headless")
     chrome_options.add_argument('--no-sandbox')
-    chrome_options.binary_location = '/app/.apt/usr/bin/google-chrome-stable'
+    chrome_options.add_argument("--start-maximized")
+    chrome_options.add_argument("--disable-infobars")
+    chrome_options.add_argument("--disable-extensions")
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument('--ignore-certificate-errors')
+    chrome_options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
 
 
 ####################################################################
@@ -91,9 +94,9 @@ def index_route():
 @cache.cached(timeout=300)
 @app.route('/home', methods=['GET'])
 def home_route():
-    global heroku, chrome_options, CHROMEDRIVER_PATH
+    global heroku, chrome_options
     if heroku:
-        browser = webdriver.Chrome(chrome_options=chrome_options)
+        browser = webdriver.Chrome(executable_path=os.environ.get('CHROMEDRIVER_PATH'), chrome_options=chrome_options)
     else:
         browser = Browser(os.environ.get('LINUX'))
     nairaland = Nairaland(browser)
