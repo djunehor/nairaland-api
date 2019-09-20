@@ -30,7 +30,7 @@ load_dotenv('.env')
 heroku = False
 if os.environ.get('Heroku') == 'True':
     from selenium import webdriver
-    CHROMEDRIVER_PATH = "/app/.chromedriver/bin/chromedriver"'
+    CHROMEDRIVER_PATH = "/app/.chromedriver/bin/chromedriver"
     heroku = True
 
     chrome_options = webdriver.ChromeOptions()
