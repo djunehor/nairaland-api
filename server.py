@@ -9,6 +9,7 @@ from nairaland.browser import Browser
 import os
 from dotenv import load_dotenv
 
+
 cache = Cache(config={'CACHE_TYPE': 'simple'})
 
 app = Flask(__name__)
@@ -30,11 +31,14 @@ load_dotenv('.env')
 heroku = False
 if os.environ.get('Heroku') == 'True':
     from selenium import webdriver
-    CHROMEDRIVER_PATH = "/app/.chromedriver/bin/chromedriver"
+    from selenium.webdriver.chrome.options import Options
+
+    CHROMEDRIVER_PATH = os.environ.get('CHROMEDRIVER_PATH', '/usr/local/bin/chromedriver')
+    GOOGLE_CHROME_BIN = os.environ.get('GOOGLE_CHROME_BIN', '/usr/bin/google-chrome')
     heroku = True
 
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument("--headless")
+    chrome_options = Options()
+    options.headless = True
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument("--start-maximized")
     chrome_options.add_argument("--disable-infobars")
@@ -42,7 +46,7 @@ if os.environ.get('Heroku') == 'True':
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument('--ignore-certificate-errors')
-    chrome_options.binary_location = '.apt/usr/bin/google-chrome-stable'
+    chrome_options.binary_location = GOOGLE_CHROME_BIN
 
 
 ####################################################################
