@@ -10,9 +10,10 @@ An unofficial API for Nairaland.
 * [Features](#features)
 * [Installation](#installation)
 * [Contributing](#contributing)
+* [Acknowledgement](#acknowledgement)
 
 # API Usage
-### API Base URL: `https://pynairaland.herokuapp.com` (Inactive for now)
+### API Base URL: `https://pynairaland.herokuapp.com`
 
 ## Endpoints Summary
 * GET: [`/home`](#api-home)
@@ -252,14 +253,24 @@ Output (excerpt):
 
 ### Todo
 * Unit tests
+* Make the API faster
 * Cache data with memcached
 
 # Installation
-You will need [Python 3](https://www.python.org/download/). [pip](http://pip.readthedocs.org/en/latest/installing.html) is recommended for installing dependencies. It is recommended that you run in a virtual environment. You can create a virtual environment by running `py -m venv [folder-name]`
-- Clone the repo `https://github.com/makinde2013/nairaland-api`
+You will need [Python 3](https://www.python.org/download/). [pip](http://pip.readthedocs.org/en/latest/installing.html) is recommended for installing dependencies.
+It is recommended that you run in a virtual environment. You can create a virtual environment by running `py -m venv [folder-name]`
+
+- Clone the repo `https://github.com/makinde2013/nairaland-api` and `cd nairaland-api`
 - Install requirements `pip install -r requirements.txt`
-- Download chrome driver for your OS [here](https://chromedriver.chromium.org/) and place in the project directory i.e same place server.py is. For windows, the name should be `chromedriver.exe`, while for LINUX, the name should be `chromedriver`
-- Rename `.env.example` to `.env` and update with your nairaland login. If you're on LINUX, set LINUX=True
+- If you're on windows, download chrome driver [here](https://chromedriver.chromium.org/) and place in the project directory i.e same place server.py is. For windows, the name should be `chromedriver.exe`
+- Rename `.env.example` to `.env` and update with your nairaland login.
+- If you're not on a windows environment, set LINUX=True in the `.env` file
+- If on heroku, set config as follows
+    - Set environment as Linux => `heroku config: add LINUX=True`
+    - Set buildpack 1 => `heroku buildpacks:set https://github.com/heroku/heroku-buildpack-google-chrome`
+    - Set buildpack 2 => `heroku buildpacks:set https://github.com/heroku/heroku-buildpack-chromedriver`
+    - Set Chrome driver path => `heroku config:set CHROMEDRIVER_PATH=/usr/local/bin/chromedriver`
+    - Set Chrome binary path => `heroku config:set GOOGLE_CHROME_BIN=/usr/bin/google-chrome`
 
 To run the API locally:
 ```bash
@@ -270,3 +281,6 @@ $ python server.py
 # Contributing
 Feel free to submit a pull request or an issue!  
 Nairaland API uses the [pynairaland package](https://github.com/makinde2013/pynairaland).
+
+# Acknowledgement
+I took some ideas from [pyquora](https://github.com/csu/pyquora)
