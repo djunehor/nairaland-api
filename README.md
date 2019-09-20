@@ -1,6 +1,6 @@
 Nairaland API
 =========
-
+[![Build Status](https://travis-ci.org/makinde2013/nairaland-api.svg?branch=master)](https://travis-ci.org/makinde2013/nairaland-api) [![HitCount](http://hits.dwyl.io/makinde2013/nairaland-api.svg)](http://hits.dwyl.io/makinde2013/nairaland-api)
 ####Please open issues and make pull requests regarding this at [makinde2013/nairaland-api](http://github.com/makinde2013/nairaland-api).
 
 An unofficial API for Nairaland.
