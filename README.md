@@ -12,7 +12,7 @@ An unofficial API for Nairaland.
 * [Contributing](#contributing)
 
 # API Usage
-### API Base URL: `http://pynairaland.herokuapp.com` (Inactive for now)
+### API Base URL: `https://pynairaland.herokuapp.com` (Inactive for now)
 
 ## Endpoints Summary
 * GET: [`/home`](#api-home)
@@ -258,8 +258,8 @@ Output (excerpt):
 You will need [Python 3](https://www.python.org/download/). [pip](http://pip.readthedocs.org/en/latest/installing.html) is recommended for installing dependencies. It is recommended that you run in a virtual environment. You can create a virtual environment by running `py -m venv [folder-name]`
 - Clone the repo `https://github.com/makinde2013/nairaland-api`
 - Install requirements `pip install -r requirements.txt`
-- Download chrome driver for your OS [here](https://chromedriver.chromium.org/) and place in the project directory i.e same place server.py is
-- Start the server `py server.py` or `python server.py`
+- Download chrome driver for your OS [here](https://chromedriver.chromium.org/) and place in the project directory i.e same place server.py is. For windows, the name should be `chromedriver.exe`, while for LINUX, the name should be `chromedriver`
+- Rename `.env.example` to `.env` and update with your nairaland login. If you're on LINUX, set LINUX=True
 
 To run the API locally:
 ```bash
