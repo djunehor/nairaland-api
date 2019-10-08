@@ -10,7 +10,6 @@ from dotenv import load_dotenv
 
 
 cache = Cache(config={'CACHE_TYPE': 'simple'})
-
 app = Flask(__name__)
 cache.init_app(app)
 
@@ -519,4 +518,4 @@ def user_post_share():
 # Start Flask
 ####################################################################
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port = int(os.environ.get("PORT", 5000)))
