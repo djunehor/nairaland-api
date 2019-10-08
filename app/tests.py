@@ -66,38 +66,32 @@ class TestCase(unittest.TestCase):
         import random
         search_terms = [5459935, 5459903, 5459832]
        
-        response = self.app.get("/topics/"+random.choice(search_terms)+"/posts")
+        response = self.app.get("/topics/"+str(random.choice(search_terms))+"/posts")
         self.assertEqual(response.status_code, 200)
 
     def test_fetch_user_followed_topics(self):
-        with app.test_client() as c:
         response = self.app.get("/user/followed_topics")
         self.assertEqual(response.status_code, 200)
 
     def test_fetch_user_followed_boards(self):
-        with app.test_client() as c:
-            response = c.get("/user/followed_boards")
-            self.assertEqual(response.status_code, 200)
+        response = self.app.get("/user/followed_boards")
+        self.assertEqual(response.status_code, 200)
 
     def test_fetch_user_mentions(self):
-        with app.test_client() as c:
-            response = c.get("/user/mentions")
-            self.assertEqual(response.status_code, 200)
+        response = self.app.get("/user/mentions")
+        self.assertEqual(response.status_code, 200)
 
-    def test_fetch_user_followed_posts(self):
-        with app.test_client() as c:
-            response = c.get("/user/following_posts")
-            self.assertEqual(response.status_code, 200)
+    def test_fetch_user_followed_posts(self):  
+        response = self.app.get("/user/following_posts")
+        self.assertEqual(response.status_code, 200)
 
     def test_fetch_user_posts_shared_with(self):
-        with app.test_client() as c:
-            response = c.get("/user/shared_with")
-            self.assertEqual(response.status_code, 200)
+        response = self.app.get("/user/shared_with")
+        self.assertEqual(response.status_code, 200)
 
     def test_fetch_user_posts_shared_with(self):
-        with app.test_client() as c:
-            response = c.get("/user/shared_with")
-            self.assertEqual(response.status_code, 200)
+        response = self.app.get("/user/shared_with")
+        self.assertEqual(response.status_code, 200)
 
 if __name__ == "__main__":
     unittest.main()
