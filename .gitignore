@@ -2,7 +2,5 @@ __pycache__/
 .env
 chromedriver.exe
 runtime.txt
-Procfile
 .idea/
 *.py___jb_tmp___
-pynairaland/
