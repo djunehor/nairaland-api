@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from flask.ext.cache import Cache
+from flask_caching import Cache
 from nairaland import Nairaland
 from nairaland import User
 import logging
@@ -513,7 +513,17 @@ def user_post_share():
     browser.driver.quit()
     return response
 
-
+@app.route("/site-map")
+def site_map():
+    links = []
+    for rule in app.url_map.iter_rules():
+        # Filter out rules we can't navigate to in a browser
+        # and rules that require parameters
+        if "GET" in rule.methods:
+            links.append(rule.endpoint)
+    return jsonify(links)
+ 
+ 
 ####################################################################
 # Start Flask
 ####################################################################

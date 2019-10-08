@@ -1,6 +1,6 @@
 feedparser
 Flask
-Flask-Cache
+Flask-Caching
 future
 gunicorn
 itsdangerous

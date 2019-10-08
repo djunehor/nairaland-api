@@ -3,15 +3,7 @@ jobs:
   build:
     docker:
       - image: python:3.5
-        environment:
-          MYSQL_HOST: 127.0.0.1
-          MYSQL_DB: mydb
-          MYSQL_USER: root
-          MYSQL_PASSWORD: root
       - image: mysql:5.6
-        environment:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: mydb
     steps:
       - checkout
 
@@ -36,16 +28,15 @@ jobs:
             DOCKERIZE_VERSION: v0.3.0
 
       - run:
-          name: Wait for MySQL
-          command: dockerize -wait tcp://localhost:3306 -timeout 1m
-
-      - run:
           name: Run unit tests
           command: |
             python3 -m venv venv
             . venv/bin/activate
             python app/tests.py
       - setup_remote_docker
+
+      - setup_remote_docker:
+          docker_layer_caching: true
 
       - run:
           name: Install Docker client
@@ -57,13 +48,13 @@ jobs:
             mv /tmp/docker/* /usr/bin
       - run:
          name: Build Docker image
-         command: docker build -t mlabouardy/movies-store:$CIRCLE_SHA1 .
+         command: docker build -t djunehor/nairaland-api:$CIRCLE_SHA1 .
 
       - run:
           name: Push to DockerHub
           command: |
             docker login -u$DOCKERHUB_LOGIN -p$DOCKERHUB_PASSWORD
-            docker push mlabouardy/movies-store:$CIRCLE_SHA1
+            docker push djunehor/nairaland-api:$CIRCLE_SHA1
       - run:
           name: Setup Heroku
           command: |
