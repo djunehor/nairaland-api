@@ -92,15 +92,3 @@ jobs: # A basic unit of work in a run
             python3 -m venv venv
             . venv/bin/activate
             python app/tests.py
-      - setup_remote_docker
-
-      - run:
-          name: Setup Heroku
-          command: |
-            chmod +x .circleci/setup-heroku.sh
-            .circleci/setup-heroku.sh
-      - run:
-          name: Deploy to Heroku
-          command: |
-            cd app/
-            git push heroku master
