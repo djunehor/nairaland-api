@@ -56,10 +56,7 @@ class TestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
     
     def test_fetch_category_topics(self):
-        import random
-        search_terms = ['politics', 'education', 'crime']
-
-        response = self.app.get("/categories/"+random.choice(search_terms)+"/topics")
+        response = self.app.get("/categories/politics/topics")
         self.assertEqual(response.status_code, 200)
     
     def test_fetch_topic_post(self):
