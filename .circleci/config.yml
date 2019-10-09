@@ -1,14 +1,17 @@
-version: 2
-jobs:
-  build:
-    docker:
-      - image: python:3.5
-    steps:
-      - checkout
+version: 2 # use CircleCI 2.0
+jobs: # A basic unit of work in a run
+  build: # runs not using Workflows must have a `build` job as entry point
+    # directory where steps are run
+    docker: # run the steps with Docker
+      # CircleCI Python images available at: https://hub.docker.com/r/circleci/python/
+      - image: circleci/python:3.6.4
+        environment: # environment variables for primary container
+          PIPENV_VENV_IN_PROJECT: true
 
-      - restore_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
-
+    steps: # steps that comprise the `build` job
+      - checkout # check out source code to working directory
+      - run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
       - run:
           name: Install Chromedriver latest version
           command: |
@@ -65,7 +68,7 @@ jobs:
               libnss3 \
               lsb-release \
               xdg-utils
-              
+
       - run:
           name: Install dependencies
           command: |
