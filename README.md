@@ -1,7 +1,11 @@
 Nairaland API
 =========
-[![Build Status](https://travis-ci.org/makinde2013/nairaland-api.svg?branch=master)](https://travis-ci.org/makinde2013/nairaland-api) [![HitCount](http://hits.dwyl.io/makinde2013/nairaland-api.svg)](http://hits.dwyl.io/makinde2013/nairaland-api)
-####Please open issues and make pull requests regarding this at [makinde2013/nairaland-api](http://github.com/makinde2013/nairaland-api).
+[![Issues](	https://img.shields.io/github/issues/djunehor/nairaland-api)](	https://img.shields.io/github/issues/djunehor/nairaland-api)
+[![forks]( https://img.shields.io/github/forks/djunehor/nairaland-api)]( https://img.shields.io/github/forks/djunehor/nairaland-api )
+[![stars]( https://img.shields.io/github/stars/djunehor/nairaland-api)]( https://img.shields.io/github/stars/djunehor/nairaland-api)
+[![HitCount](http://hits.dwyl.io/makinde2013/nairaland-api.svg)](http://hits.dwyl.io/makinde2013/nairaland-api)
+
+#### Please open issues and make pull requests regarding this at [makinde2013/nairaland-api](http://github.com/makinde2013/nairaland-api).
 
 An unofficial API for Nairaland.
 
